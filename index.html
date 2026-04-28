@@ -949,7 +949,7 @@
     osc.type = type;
     osc.frequency.setValueAtTime(freq, t);
     osc.frequency.exponentialRampToValueAtTime(freq * 0.7, t + dur);
-    gain.gain.setValueAtTime(vol, t);
+    gain.gain.setValueAtTime(vol * 0.9, t); // 전체 볼륨 10% 감소
     gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
     osc.start(t);
     osc.stop(t + dur + 0.01);
@@ -965,7 +965,7 @@
       o.connect(g); g.connect(audioCtx.destination);
       o.type = 'sine';
       o.frequency.setValueAtTime(freq * harmonic, t);
-      const v = vol / (i + 1);
+      const v = (vol * 0.9) / (i + 1); // 전체 볼륨 10% 감소
       g.gain.setValueAtTime(v, t);
       g.gain.exponentialRampToValueAtTime(0.0001, t + 0.9 - i * 0.15);
       o.start(t); o.stop(t + 1);
